@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tagged Template Strings</title>
+  <style>
+    .hl {
+      background: #ffc600;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    // Tagging template strings with a function allows you to choose how to build the strings
+    // Tag them with the name of the function and pass the function the strings and the variable values (using the rest operator)
+    // Each string is a chunk of the template string until it is interrupted by a variable
+    // You can loop through the strings and, for example, style each value as it's inserted
+
+    function highlight(strings, ...values) {
+      let str = '';
+      strings.forEach((string, i) => {
+        str += `${string} <span contenteditable class="hl">${values[i] || ''}</span>`;
+      });
+      return str;
+    }
+
+    const name = 'Tiny';
+    const age = 15;
+
+    const sentence = highlight`My dog's name is ${name} and he is ${age} years old`;
+    document.body.innerHTML = sentence;
+    console.log(sentence);
+
+  </script>
+</body>
+
+</html>
