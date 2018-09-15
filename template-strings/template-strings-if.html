@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>If Statements Inside Template Strings</title>
+</head>
+
+<body>
+  <script>
+    // You can use if statments inside template strings by using ternerary operators. 
+    // If you have a list of songs and only some have the property 'featuring' you can check for that and make sure 'undefined' is not displayed
+
+    const song = {
+      name: 'Nina Cried Power',
+      artist: 'Hozier',
+      featuring: 'Mavis Staples'
+    };
+
+    const markup = `
+    <div class="song">
+      <p>
+        ${song.name} — ${song.artist}
+        ${song.featuring ? `(Featuring ${song.featuring})` : ''}
+      </p>
+    </div>
+  `;
+
+    document.body.innerHTML = markup;
+
+  </script>
+</body>
+
+</html>

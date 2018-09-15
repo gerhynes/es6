@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Nested Template Strings</title>
+</head>
+
+<body>
+  <script>
+
+    // You can nest template strings inside other template strings
+    // This is useful if you need looping inside a template string
+    // Just remember to use .join('') to avoid commas
+
+    const dogs = [
+      { name: 'Tiny', age: 15 },
+      { name: 'Rex', age: 4 },
+      { name: 'Rusty', age: 7 }
+    ];
+
+    const markup = `
+    <ul class="dogs">
+      ${dogs.map(dog => `
+        <li>
+          ${dog.name}
+          is
+          ${dog.age * 7}
+        </li>`).join('')}
+    </ul>
+  `;
+    document.body.innerHTML = markup;
+
+  </script>
+</body>
+
+</html>
