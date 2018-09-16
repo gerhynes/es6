@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tagged Templates</title>
+  <style>
+    abbr {
+      border-bottom: 1px dotted grey;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="bio">
+
+  </div>
+
+  <script>
+    // One use of tagged template strings is adding definitions to abbreviations
+    // Tag the template string with the function addAbbreviations
+    // Inside addAbbreviations, map over the values and if they match an entry in dict, wrap the value in an abbr tag, otherwise just return the value
+    // Then use .reduce() to build up the sentence
+
+    const dict = {
+      HTML: 'Hyper Text Markup Language',
+      CSS: 'Cascading Style Sheets',
+      JS: 'JavaScript'
+    };
+
+    function addAbbreviations(strings, ...values) {
+      const abbreviated = values.map(value => {
+        if (dict[value]) {
+          return `<abbr title="${dict[value]}">${value}</abbr>`
+        }
+        return value;
+      });
+
+      return strings.reduce((sentence, string, i) => {
+        return `${sentence}${string}${abbreviated[i] || ''}`;
+      }, '');
+    }
+
+    const first = 'Ger';
+    const last = 'Hynes';
+    const sentence = addAbbreviations`Hello, my name is ${first} ${last} and I love to code ${'HTML'}, ${'CSS'}, and ${'JS'}`;
+
+    const bio = document.querySelector('.bio');
+    const p = document.createElement('p');
+    p.innerHTML = sentence;
+    bio.appendChild(p);
+  </script>
+</body>
+
+</html>
