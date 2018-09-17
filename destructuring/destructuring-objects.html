@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Destructuring Objects</title>
+</head>
+
+<body>
+  <script>
+    const person = {
+      first: 'Ger',
+      last: 'Hynes',
+      country: 'Ireland',
+      city: 'Mullingar',
+      twitter: '@Gerard_K_Hynes'
+    };
+
+    // es5 var first = person.first;
+    //     var last = person.last;
+
+    // Destructuring allows you to extract data from objects, arrays, maps and sets
+    const { first, last, twitter } = person;
+
+    // It's especially useful when working with nested data
+    const ger = {
+      first: 'Ger',
+      last: 'Hynes',
+      links: {
+        social: {
+          twitter: 'https://twitter.com/Gerard_K_Hynes',
+          facebook: 'https://www.facebook.com/gerard.hynes.948',
+        },
+        web: {
+          github: 'https://github.com/GK-Hynes'
+        }
+      }
+    };
+
+    // es5 var twitter = ger.links.social.twitter;
+    // es6 const { twitter, facebook } = ger.links.social;
+
+    // Renaming variables in destructuring
+    const { twitter: tweet, facebook: fb } = ger.links.social;
+
+
+    // Default values in destrucuring
+
+    // You can set a default value and if it doesn't exist in the object being destructured, it will be used
+    // If the value exists in the object, the default will be overwritten
+
+    const settings = { width: 300, color: 'black' }  // height and fontSize don't exist
+    const { width = 100, height = 100, color = 'blue', fontSize = 25 } = settings;
+
+    // Object Destructuring with variable renaming & default values
+    const { w: width = 400, h: height = 500 } = { w: 800 }
+          // width = 800, height = 500
+
+  </script>
+</body>
+
+</html>
