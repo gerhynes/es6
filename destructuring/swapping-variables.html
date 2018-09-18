@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Swapping Variables with Destructuring</title>
+</head>
+
+<body>
+  <script>
+    let inRing = 'Hulk Hogan';
+    let onSide = 'The Rock';
+
+    // Previously you would have to make a temporary variable when swapping variables
+
+    // var tmp = inRing;
+    //  inRing = onSide;
+    //  onSide = tmp;
+
+    // In es6 you create an array of the variables and immediately destructure it
+    [inRing, onSide] = [onSide, inRing];
+
+  </script>
+</body>
+
+</html>
