@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Iterables & Looping</title>
+</head>
+
+<body>
+  <script>
+    /* eslint-disable */
+
+    // Monkeying with the array prototype, something many libraries do
+    // This will bite you when using for in loops. See below ⬇️⬇️
+    Array.prototype.shuffle = function () {
+      var i = this.length, j, temp;
+      if (i == 0) return this;
+      while (--i) {
+        j = Math.floor(Math.random() * (i + 1));
+        temp = this[i];
+        this[i] = this[j];
+        this[j] = temp;
+      }
+      return this;
+    };
+
+    const cuts = ['Chuck', 'Brisket', 'Shank', 'Short Rib'];
+
+    cuts.shop = 'MM Meats';
+
+    // The for loop syntax can be confusing
+
+    // for (let i = 0; i < cuts.length; i++) {
+    //   console.log(cuts[i]);
+    // }
+
+
+    // You cannot abort a forEach loop, or skip an element
+
+    // cuts.forEach((cut) => {
+    //   console.log(cut);
+    //   if(cut === 'Brisket') {
+    //     continue;
+    //   }
+    // });
+
+
+    // The for in loop needs to switch from index to value
+    // It also loops over everything added to the prototype
+
+    // for (const index in cuts) {
+    //   console.log(cuts[index]);
+    // }
+
+
+
+    // The for of loop can be used for every data type except objects
+    // You can use break and continue
+    // It won't loop over additions to the prototype
+
+    for (const cut of cuts) {
+      if (cut === 'Brisket') {
+        continue;
+      }
+      console.log(cut);
+    }
+
+  </script>
+</body>
+
+</html>
