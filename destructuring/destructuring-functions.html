@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Destructuring with Functions</title>
+</head>
+
+<body>
+  <script>
+    // You can't return multiple values from a function
+    // But you can return an object and immediately destructure it
+
+    function convertCurrency(amount) {
+      const converted = {
+        USD: amount * 1.17,
+        GPB: amount * 0.89,
+        AUD: amount * 1.61,
+        CHF: amount * 1.12
+      };
+      return converted;
+    }
+
+    // es5
+    // var hundred = convertCurrency(100);
+    // console.log(hundred.USD);
+    // console.log(hundred.GPB);
+    // console.log(hundred.AUD);
+    // console.log(hundred.CHF);
+
+    // es6
+    const { USD, GPB, AUD, CHF } = convertCurrency(100);
+    console.log(USD, GPB, AUD, CHF);
+
+
+    // You can use destructurin to make default parameteres order agnostic
+    // If you pass in nothing, it will default to an empty object
+
+    function tipCalc({ total = 100, tip = 0.15, tax = 0.13 } = {}) {
+      return total + (tip * total) + (tax * total);
+    }
+
+    const bill = tipCalc({ tip: 0.20, total: 200 });
+    console.log(bill);
+
+  </script>
+</body>
+
+</html>
