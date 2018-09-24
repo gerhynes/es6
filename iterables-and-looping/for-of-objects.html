@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Iterables & Looping</title>
+</head>
+
+<body>
+
+  <script>
+    const apple = {
+      color: 'Red',
+      size: 'Medium',
+      weight: 50,
+      sugar: 10
+    }
+
+    // A plain object is not an iterable so you can't easily use a for of with it
+    // In es2017 you will be able to use Object.entries()
+    // Until then use a for in loop or use Object.keys
+
+    for (const prop of Object.keys(apple)) {
+      const value = apple[prop];
+      console.log(value, prop);
+    }
+
+  </script>
+</body>
+
+</html>
