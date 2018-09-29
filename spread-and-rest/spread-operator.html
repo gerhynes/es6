@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The ...Spread Operator</title>
+</head>
+
+<body>
+  <script>
+    /*
+     The ...spread operator takes every element from an iterable, 
+     e.g. an array or string, and applies that element into another iterable.
+     e.g. ['Ger']     // ['Ger']
+          [...'Ger']  // ['G', 'e', 'r']
+    */
+
+    const featured = ['Deep Dish', 'Pepperoni', 'Hawaiian'];
+    const specialty = ['Meatzza', 'Spicy Mama', 'Margherita'];
+
+    const pizzas = [...featured, 'veg', ...specialty];
+    console.log(pizzas); // ['Deep Dish', 'Pepperoni', 'Hawaiian', 'veg', 'Meatzza', 'Spicy Mama', 'Margherita'];
+
+
+    // The ...spread operator is useful for copying arrays without overwriting the original. 
+    const fridayPizzas = [...pizzas];
+    fridayPizzas[0] = 'Tuna';
+    console.log(fridayPizzas); // ['Tuna', 'Pepperoni', 'Hawaiian', 'veg', 'Meatzza', 'Spicy Mama', 'Margherita'];
+    console.log(pizzas); // ['Deep Dish', 'Pepperoni', 'Hawaiian', 'veg', 'Meatzza', 'Spicy Mama', 'Margherita'];
+
+  </script>
+</body>
+
+</html>
