@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Object Literal Upgrades</title>
+</head>
+
+<body>
+  <script>
+    // When the property name is the same as the variable you don't need to repeat them.
+
+    const first = 'Tiny';
+    const last = 'Hynes';
+    const age = 2;
+    const breed = 'Terrier';
+    const dog = {
+      firstName: first,
+      last,
+      age,
+      breed,
+      pals: ['Snowball', 'Rex']
+    };
+    console.log(dog);
+
+    // Method definitions can now be more concise
+
+    // es5 
+    // var modal = {
+    //   create: function () { },
+    //   open: function () { },
+    //   close: function () { },
+    // }
+
+    // es6
+    const modal = {
+      create(selector) {
+
+      },
+      open(content) {
+
+      },
+      close(goodbye) {
+
+      }
+    }
+
+
+    // You can now compute the property keys inside an object literal while you define it.
+
+    // Takes in hex code and returns inverse colour
+    function invertColor(color) {
+      return '#' + ("000000" + (0xFFFFFF ^ parseInt(color.substring(1), 16)).toString(16)).slice(-6);
+    }
+
+    const key = 'pocketColor';
+    const value = '#ffc600';
+
+    const tShirt = {
+      [key]: value,
+      [`${key}Opposite`]: invertColor(value)
+    };
+
+    // You can also use computed property names instead of mapping.
+    const keys = ['size', 'color', 'weight'];
+    const values = ['medium', 'red', 100];
+
+    const shirt = {
+      [keys.shift()]: values.shift(),
+      [keys.shift()]: values.shift(),
+      [keys.shift()]: values.shift(),
+    }
+    console.log(shirt);
+
+  </script>
+</body>
+
+</html>
