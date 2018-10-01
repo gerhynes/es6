@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Spreading into a function</title>
+</head>
+
+<body>
+  <script>
+    // If you try to push an array into an array you'll just get a nested array
+    // If you use spread, each array item is passed as an argument to push
+    const inventors = ['Einstein', 'Newton', 'Galileo'];
+    const newInventors = ['Salk', 'Berners-Lee'];
+    inventors.push(...newInventors);
+    console.log(inventors);
+
+
+    // When passing an array item into a function you could use arr[0] if you knew which index you were accessing.
+    // But spread works great when you have to pass multiple array items.
+
+    const name = ['Eleanor', 'Rigby'];
+
+    function sayHi(first, last) {
+      alert(`Hey there ${first} ${last}`);
+    }
+
+    sayHi(...name);
+
+  </script>
+</body>
+
+</html>
