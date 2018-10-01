@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The ...Rest Param</title>
+</head>
+
+<body>
+  <script>
+    // Although they look similar, spread and rest behave oppositely.
+    // Spread takes one thing and unpacks it into multiple things.
+    // Rest takes multiple things and packs them into one thing.
+
+    //Rest is useful when you want a function to treat some arguments one way and the rest another way
+
+    /*
+    function convertCurrency(rate, tax, tip, ...amounts) {
+      console.log(rate, tax, tip, amounts);
+      return amounts.map(amount => amount * rate);
+    }
+
+    const amounts = convertCurrency(1.54, 10, 23, 52, 1, 56);
+    console.log(amounts);
+    */
+
+    // Rest is commonly used in destructuring. 
+    // It lets you avoid splicing or counting on indexes
+    const runner = ['Sally Fields', 123, 5.5, 5, 3, 6, 35];
+    const [name, id, ...runs] = runner;
+    console.log(name, id, runs);
+
+    const team = ['Kiara', 'Barry', 'Tadhg', 'Siobhan', 'Lorna'];
+    const [captain, assistant, ...players] = team;
+    console.log(captain, assistant, players)
+
+  </script>
+</body>
+
+</html>
