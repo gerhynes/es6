@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Promises Introduction</title>
+</head>
+
+<body>
+
+  <script>
+    // A promise is something that will happen in the future but not immediately.
+    // While fetch is fetching data it stores a promise until the data can arrive.
+    // We have a "then" function that will only run when the data comes back.
+    // You can chain "thens" together.
+    // The "catch" function runs if the data comes back as an error.
+
+    const postsPromise = fetch("https://wesbos.com/wp-json/wp/v2/posts");
+
+    postsPromise
+      .then(data => data.json())
+      .then(data => { console.log(data) })
+      .catch((err) => {
+        console.error(err);
+      });
+  </script>
+
+</body>
+
+</html>
