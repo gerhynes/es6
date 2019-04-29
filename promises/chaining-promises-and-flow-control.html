@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chaining Promises</title>
+</head>
+
+<body>
+
+  <script>
+    const posts = [
+      { title: "I love JavaScript", author: "Ali Spittel", id: 1 },
+      { title: "CSS Specificity", author: "Emma Wedekind", id: 2 },
+      { title: "Vue.js", author: "Sarah Drasner", id: 3 }
+    ]
+
+    const authors = [
+      { name: "Ali Spittel", twiter: "ASpittel", blog: "https://dev.to/aspittel" },
+      { name: "Emma Wedekind", twiter: "@EmmaWedekind", blog: "https://medium.com/@emmawedekind" },
+      { name: "Sarah Drasner", twiter: "@sarah_edo", blog: "https://css-tricks.com/author/sdrasner/" }
+    ]
+
+    function getPostById(id) {
+      // Create new promise
+      return new Promise((resolve, reject) => {
+        // Use settimeout to mimic a database
+        setTimeout(() => {
+          // Find the post you want
+          const post = posts.find(post => post.id === id);
+          if (post) {
+            // Send the post back
+            resolve(post);
+          } else {
+            reject(Error("No post was found"));
+          }
+        }, 2000);
+      });
+    }
+
+    function hydrateAuthor(post) {
+      // Create new promise
+      return new Promise((resolve, reject) => {
+        // Find the author
+        const authorDetails = authors.find(person => person.name === post.author);
+        if (authorDetails) {
+          // "hydrate" the post object with the author object
+          post.author = authorDetails;
+          resolve(post);
+        } else {
+          reject(Error("Can not find the author"));
+        }
+      })
+    }
+
+    getPostById(2)
+      .then(post => {
+        return hydrateAuthor(post);
+      })
+      .then(post => {
+        console.log(post)
+      })
+      .catch(err => {
+        console.error(err);
+      })
+
+  </script>
+
+</body>
+
+</html>
