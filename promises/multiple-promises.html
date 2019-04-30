@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Multiple Promises</title>
+</head>
+
+<body>
+  <script>
+    // const weather = new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve({ temp: 29, condition: "Sunny with clouds" });
+    //   }, 2000);
+    // });
+
+    // const tweets = new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve(["I like cake", "BBQ is good too!"]);
+    //   }, 500);
+    // });
+
+    // Promise
+    //   .all([weather, tweets])
+    //   .then(responses => {
+    //     const [weatherInfo, tweetInfo] = responses
+    //     console.log(weatherInfo, tweetinfo);
+    //   });
+
+    // If you are sending off multiple promises, you can use Promise.all() and pass it an array of promises.
+    // This will wait for all promises to resolve before running .then()
+
+    const postsPromise = fetch("https://wesbos.com/wp-json/wp/v2/posts");
+    const streetCarsPromise = fetch("https://data.ratp.fr/api/datasets/1.0/search/?q=paris");
+
+    Promise
+      .all([postsPromise, streetCarsPromise])
+      .then(responses => {
+        return Promise.all(responses.map(res => res.json()
+        ))
+      })
+      .then(responses => {
+        console.log(responses)
+      })
+
+      // Many different types of data could come back.
+      // When your promsies come back you can run .json() on them in another promise.
+      // When that final promise resolves, you'll have your data to do what you want with.
+
+  </script>
+
+</body>
+
+</html>
