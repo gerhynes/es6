@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Extending Arrays</title>
+</head>
+
+<body>
+  <script>
+    class MovieCollection extends Array {
+      constructor(name, ...items) {
+        super(...items); // Same as new Array()
+        this.name = name;
+      }
+      add(movie) {
+        this.push(movie)
+      }
+      topRated(limit = 10) {
+        return this.sort((a, b) => (a.stars > b.stars ? -1 : 1)).slice(0, limit)
+      }
+    }
+
+    const movies = new MovieCollection("My favourite movies",
+      { name: "FOTR", stars: 8 },
+      { name: "Pacific Rim", stars: 10 },
+      { name: "Pan's Labyrinth", stars: 8 }
+    );
+
+    movies.add({ name: `Muppet's Christmas Carol`, stars: 7 });
+
+
+// With ES6, you can extend built in things like arrays without interfering with the prototype by using a class
+
+  </script>
+</body>
+
+</html>
