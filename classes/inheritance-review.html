@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Prototypal Inheritance Review</title>
+</head>
+
+<body>
+
+  <script>
+    function Dog(name, breed) {
+      this.name = name;
+      this.breed = breed
+    }
+
+    Dog.prototype.bark = function () {
+      console.log(`Bark! Bark! My name is ${this.name}`)
+    }
+
+    const snickers = new Dog("Snickers", "King Charles")
+
+    // Prototypal Inheritance
+    // When you put a method on the original constructor, this method will be inherited by all instances
+    // For example, all array methods (join, pop, map etc.) come from methods on the original Array
+    // You can add methods to the prototype and they will be inherited
+  </script>
+
+
+</body>
+
+</html>
